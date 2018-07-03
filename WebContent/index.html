@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<script src="js/vue.min.js"></script>
+		<link href="css/MyStyle.css" rel="stylesheet">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="vue_det">
+			<h3>site : {{site}}</h3>
+			<h3>url : {{url}}</h3>
+			<h3>{{details()}}</h3>
+		</div>
+		<script src="js/vue.js"></script>
+		<!--<script type="text/javascript">
+		var vm = new Vue({
+			el: '#vue_det',
+			data: {
+				site: "菜鸟教程",
+				url: "www.runoob.com",
+				alexa: "10000"
+			},
+			methods: {
+				details: function() {
+					return  this.site + " - 学的不仅是技术，更是梦想！";
+				}
+			}
+		})
+	    </script>-->
+		<h1>Vue.js 起步 </h1>
+
+		<script type="text/javascript">
+			document.write("相同的对象:")
+			// 我们的数据对象
+			var data = {
+				site: "菜鸟教程",
+				url: "http://www.runoob.com",
+				alexa: 10000
+			}
+			var vm = new Vue({
+				el: '#vue_det',
+				data: data
+			})
+			// 它们引用相同的对象！
+
+			document.write("相同的对象:")
+			document.write(vm.site === data.site) // true
+			document.write("<br>")
+			document.write("例外一种写法:")
+			document.write(vm.$data === data) // true
+			document.write("<br>" + "比较vm.$el == document.getElementById('vue_det'):")
+			document.write(vm.$el === document.getElementById('vue_det')) // true
+			document.write("<br>")
+			// 设置属性也会影响到原始数据
+			vm.site = "我是新的site"
+			document.write("新的site:" + data.site + "<br>") // Runoob
+
+			// ……反之亦然
+			data.alexa = 1234
+			document.write(vm.alexa) // 1234
+		</script>
+
+		<h1>Vue.js 模板语法 </h1>
+		<h3>1、使用 v-html 指令用于输出 html 代码 </h3>
+		<div id="app">
+			<div v-html="message"></div>
+		</div>
+
+		<h3>2、以下实例判断 class1 的值，如果为 true 使用 class1 类的样式，否则不使用该类： </h3>
+		<div id="app2">
+			<label for="r1">修改颜色</label><input type="checkbox" v-model="model" id="r1">
+			<br><br>
+			<div v-bind:class="{'divcss': model}">
+				model为取值范围，true/false,为true时取样式MyStyle.css/divcss
+			</div>
+		</div>
+
+		<h3>3、Vue.js 都提供了完全的 JavaScript 表达式支持 </h3>
+		<div id="app3">
+			{{5+5}}<br> {{ ok ? 'YES' : 'NO' }}<br> {{ message.split('').reverse().join('') }}
+			<div v-bind:id="'list-' + id">绑定div的id为：list-33，修改字体颜色</div>
+		</div>
+
+		<h3>4、指令是带有 v- 前缀的特殊属性。指令用于在表达式的值改变时，将某些行为应用到 DOM 上</h3>
+		<p>差不多，不举栗子啦!!!</p>
+
+		<h3>5、用户输入,在 input 输入框中我们可以使用 v-model 指令来实现双向数据绑定：</h3>
+		<div id="app4">
+			<p>{{ message }}</p>
+			<input v-model="message">
+		</div>
+
+		<h3>6、按钮的事件我们可以使用 v-on 监听事件，并对用户的输入进行响应。</h3>
+		<div id="app5">
+			<p>{{ message }}</p>
+			<button v-on:click="reverseMessage">反转字符串</button>
+		</div>
+
+		<h3>7、Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。</h3>
+		<!-- 在两个大括号中 -->
+		<div id="app6">
+			{{ message | filter('arg1',1+9)}}
+		</div>
+		<!-- 在 v-bind 指令中 -->
+		<div v-bind:id="rawId | filterA |filterB('arg1', arg2)"></div>
+
+		<h1>循环语句</h1>
+		<div id="example">
+			<ol>
+				<li v-for="site in sites">
+					{{ site.name }}
+				</li>
+			</ol>
+		</div>
+
+		<h1>表单</h1>
+		<div id="example1">
+			<p>input 元素：</p>
+			<input v-model="message" placeholder="编辑我……">
+			<p>消息是: {{ message }}</p>
+
+			<p>textarea 元素：</p>
+			<p style="white-space: pre">{{ message2 }}</p>
+			<textarea v-model="message2" placeholder="多行文本输入……"></textarea>
+		</div>
+
+		<h1>动画</h1>
+		<a href="hello.html">点我看动画效果</a>
+		<script src="js/vue2.js"></script>
+	</body>
+
+</html>

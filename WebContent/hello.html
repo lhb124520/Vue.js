@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+		<link href="css/MyStyle.css" rel="stylesheet">
+	</head>
+	<body>
+		<h1>动画</h1>
+		<div id="databinding">
+			<button v-on:click="show = !show">点我</button>
+			<transition name="fade">
+				<p v-show="show" v-bind:style="styleobj">动画实例</p>
+			</transition>
+		</div>
+		<script src="js/vue2.js"></script>
+	</body>
+</html>
